@@ -5,8 +5,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /home/echolocation && useradd -U echolocation
 COPY xinetd /etc/xinetd.d/echolocation
-COPY flag /home/echolocation/
-RUN chmod 444 /home/echolocation/flag
+COPY echolocation flag* /home/echolocation/
 COPY echolocation /usr/local/bin/
 EXPOSE 1337
 CMD ["/usr/sbin/xinetd", "-dontfork"]
