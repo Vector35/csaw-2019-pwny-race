@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p distribute
 for dir in easy medium hard
 do
     if [ -d $dir ]
