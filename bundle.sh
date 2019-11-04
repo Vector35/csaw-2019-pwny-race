@@ -7,7 +7,8 @@ do
         pushd $dir
         for challenge in *
         do
-            zip ../distribute/$challenge.zip $challenge/xinetd $challenge/$challenge $challenge/Dockerfile $challenge/README
+            rm ../distribute/$challenge.zip
+            zip ../distribute/$challenge.zip $challenge/xinetd $challenge/$challenge $challenge/Dockerfile $challenge/libc.so.6 $challenge/README
         done
         popd
     fi
