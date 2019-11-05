@@ -3,3 +3,4 @@ db.sqlite3
 server/*/*.pyc
 server/server/media/*
 __pycache__/
+.gdb_history
