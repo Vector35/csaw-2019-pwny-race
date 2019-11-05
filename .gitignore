@@ -4,3 +4,4 @@ server/*/*.pyc
 server/server/media/*
 __pycache__/
 .gdb_history
+*.swp
