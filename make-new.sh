@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function error {
-    echo "$0 <easy|medium|hard> challengename"
+    echo "$0 <round1|round2|round3|round4|tiebreaker> challengename" 
     exit 1
 }
 
@@ -11,7 +11,7 @@ then
 fi
 
 case $1 in
-    easy|medium|hard)
+    round1|round2|round3|round4|tiebreaker)
     ;;
     *)
         error
