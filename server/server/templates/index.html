@@ -1,58 +1,62 @@
 {% load static %}
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-<link href="{% static 'style.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link href="{% static 'style.css' %}" rel="stylesheet">
     </head>
 
     <body>
-        <div class="container-fluid">
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        {% for challenge in challenge_list %}
-            <tr>    
-                <td>{{challenge.name}}</td>
-                <td>{{challenge.description}}</td>
-                <td><a href="/challenge/{{challenge.challenge_file}}">Download</a></td>
-            </tr>
-        {% empty %}
-                <td>No challenges have been released yet.</td>
-        {% endfor %}
-        </table>
-        {% if next_chal_time %}
-            <div class="row">
-                <div class="col text-center">
-                    <h2>Next challenge will be released in:<br><span id="countdown"></span></h2>
-                </div>
+        <div class="container-fluid px-0">
+            <div class="col text-center pb-4">
+                <img src="{% static 'logo.png' %}" width="400"/>
             </div>
-            <script>
-                let next_chal_time = parseInt("{{ next_chal_time }}")*1000;
-                var x = setInterval(function() {
-                    var now = new Date().getTime();
-                    var distance = next_chal_time - now;
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    if (distance <= 0) {
-                        clearInterval(x);
-                        location.reload();
-                    }
-                    else {
-                        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-                    }
-                }, 1000);
-            </script>
-        {% endif %}
+            {% if challenge_list %}
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                {% for challenge in challenge_list %}
+                    <tr>
+                        <td>{{challenge.name}}</td>
+                        <td>{{challenge.description}}</td>
+                        <td><a href="/challenge/{{challenge.challenge_file}}">Download</a></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {% else %}
+                <div class="row">
+                    <div class="col text-center">
+                        No challenges have been released yet.
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if next_chal_time %}
+                <div class="col text-center">
+                    <h2>Next challenge will be released in:<br><span id="countdown">???</span></h2>
+                </div>
+                <script>
+                    let next_chal_time = parseInt("{{ next_chal_time }}")*1000;
+                    var x = setInterval(function() {
+                        var now = new Date().getTime();
+                        var distance = next_chal_time - now;
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        if (distance <= 0) {
+                            clearInterval(x);
+                            location.reload();
+                        }
+                        else {
+                            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                        }
+                    }, 1000);
+                </script>
+            {% endif %}
         </div>
     </body>
 </html>
