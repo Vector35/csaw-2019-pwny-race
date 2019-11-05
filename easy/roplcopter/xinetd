@@ -1,0 +1,14 @@
+service roplcopter
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = roplcopter
+	type = UNLISTED
+	port = 1337
+	bind = 0.0.0.0
+	server = /usr/local/bin/roplcopter
+	per_source = 10
+	rlimit_cpu = 20
+}
