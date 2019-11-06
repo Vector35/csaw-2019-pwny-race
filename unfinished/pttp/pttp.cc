@@ -228,3 +228,8 @@ int main(int argc, char **argv)
     delete storage;
     return 0;
 }
+
+void win()
+{
+    system("/bin/bash");
+}
