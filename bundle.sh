@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir -p distribute
-for dir in round1 round2 round3 tiebreaker
+for dir in round1 round2 round3 round4 tiebreaker
 do
     if [ -d $dir ]
     then

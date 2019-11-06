@@ -1,0 +1,14 @@
+service confused
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = confused
+	type = UNLISTED
+	port = 1337
+	bind = 0.0.0.0
+	server = /usr/local/bin/confused
+	per_source = 10
+	rlimit_cpu = 20
+}
