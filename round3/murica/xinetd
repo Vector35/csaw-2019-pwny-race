@@ -1,0 +1,14 @@
+service murica
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = murica
+	type = UNLISTED
+	port = 1337
+	bind = 0.0.0.0
+	server = /usr/local/bin/murica
+	per_source = 10
+	rlimit_cpu = 20
+}
