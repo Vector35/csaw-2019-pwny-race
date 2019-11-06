@@ -1,0 +1,14 @@
+service pttp
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = pttp
+	type = UNLISTED
+	port = 4040
+	bind = 0.0.0.0
+	server = /usr/local/bin/pttp
+	per_source = 10
+	rlimit_cpu = 20
+}
