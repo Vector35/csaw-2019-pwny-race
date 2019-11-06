@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /home/multilingual && useradd -U multilingual
 COPY xinetd /etc/xinetd.d/multilingual
 COPY multilingual flag* /home/multilingual/
+COPY flag* /
 COPY multilingual /usr/local/bin/
 EXPOSE 1337
 CMD ["/usr/sbin/xinetd", "-dontfork"]

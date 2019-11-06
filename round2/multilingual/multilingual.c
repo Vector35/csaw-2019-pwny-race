@@ -34,7 +34,7 @@ void listlang(struct language* lang)
     struct language* next;
     next = lang;
     puts("TAG\tGREETING");
-    while (next->next != NULL)
+    while (next != NULL)
     {
         printf("%s\t%s\n", next->tag, next->greeting);
         next = next->next;
@@ -53,7 +53,7 @@ void addlanguage(struct language* head)
     fflush(stdout);
     scanf("%19s", next->greeting);
     next->next = NULL;
-    while (current->next != NULL);
+    while (current->next != NULL)
     {
         if (strcmp(current->tag, next->tag) == 0)
         {
@@ -70,6 +70,10 @@ void addlanguage(struct language* head)
     }
     //does not yet exist, add it.
     current->next = next;
+    printf("%x\n", current);
+    printf("%x\n", current->next);
+    printf("%x\n", next);
+    fflush(stdout);
 }
 
 
@@ -306,9 +310,10 @@ void pick_print(struct language* lang)
     }
     void (*pptr)(char*); 
     void* ptrs[8] = { print1, print2, print3, print4, print5, print6, print7, print8 };
-    int count = (lang->tag[0] + lang->tag[1]) - 194;
+    unsigned int count = (lang->tag[0] + lang->tag[1]) - 194;
     //printf("DEBUG: Calculated tag: %d\n", count);
     pptr = ptrs[(count % 52) / 7];
+    printf("%x\n", (count % 52) / 7);
     pptr(lang->greeting);
     pptr(name);
 }
@@ -345,7 +350,8 @@ int main()
             case 5:
                 printf("\nNew name: \n-> ");
                 fflush(stdout);
-                scanf("%9s", name);
+                size_t n = read(0, name, 9);
+                name[n] = 0;
                 break;
             case 6:
                 pick_print(current);
