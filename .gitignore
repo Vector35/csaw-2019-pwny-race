@@ -1,4 +1,3 @@
-distribute
 db.sqlite3
 server/*/*.pyc
 server/server/media/*
