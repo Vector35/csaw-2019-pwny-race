@@ -14,7 +14,7 @@
         "id": "pulse_input_capture",
         "mixers": 255,
         "monitoring_type": 0,
-        "muted": true,
+        "muted": false,
         "name": "Mic/Aux",
         "prev_ver": 402653187,
         "private_settings": {},
@@ -23,7 +23,36 @@
         "push-to-talk": false,
         "push-to-talk-delay": 0,
         "settings": {
-            "device_id": "default"
+            "device_id": "alsa_input.usb-Samson_Technologies_Samson_GoMic-00.analog-stereo.2"
+        },
+        "sync": 0,
+        "volume": 1.0
+    },
+    "AuxAudioDevice2": {
+        "balance": 0.5,
+        "deinterlace_field_order": 0,
+        "deinterlace_mode": 0,
+        "enabled": true,
+        "flags": 0,
+        "hotkeys": {
+            "libobs.mute": [],
+            "libobs.push-to-mute": [],
+            "libobs.push-to-talk": [],
+            "libobs.unmute": []
+        },
+        "id": "pulse_input_capture",
+        "mixers": 255,
+        "monitoring_type": 0,
+        "muted": false,
+        "name": "Mic/Aux 2",
+        "prev_ver": 402653187,
+        "private_settings": {},
+        "push-to-mute": false,
+        "push-to-mute-delay": 0,
+        "push-to-talk": false,
+        "push-to-talk-delay": 0,
+        "settings": {
+            "device_id": "alsa_input.usb-Samson_Technologies_Samson_GoMic-00.analog-stereo"
         },
         "sync": 0,
         "volume": 1.0
@@ -377,7 +406,7 @@
             "id": "ffmpeg_source",
             "mixers": 255,
             "monitoring_type": 0,
-            "muted": false,
+            "muted": true,
             "name": "Computer 1",
             "prev_ver": 402653187,
             "private_settings": {},
@@ -563,7 +592,7 @@
             "id": "ffmpeg_source",
             "mixers": 255,
             "monitoring_type": 0,
-            "muted": false,
+            "muted": true,
             "name": "Computer 2",
             "prev_ver": 402653187,
             "private_settings": {},
