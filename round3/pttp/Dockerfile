@@ -8,5 +8,5 @@ RUN mkdir -p /home/pttp && useradd -U pttp
 COPY xinetd /etc/xinetd.d/pttp
 COPY pttp flag* /home/pttp/
 COPY pttp /usr/local/bin/
-EXPOSE 4040
+EXPOSE 1337
 CMD ["/usr/sbin/xinetd", "-dontfork"]

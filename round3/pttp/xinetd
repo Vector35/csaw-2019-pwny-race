@@ -6,7 +6,7 @@ service pttp
 	wait = no
 	user = pttp
 	type = UNLISTED
-	port = 4040
+	port = 1337
 	bind = 0.0.0.0
 	server = /usr/local/bin/pttp
 	per_source = 10
