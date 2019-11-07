@@ -61,14 +61,14 @@ unsigned int PString::len()
 
 
 enum StringType { CSTRING = 0, PSTRING = 1 };
-struct StringStorage {
+struct Item {
     unsigned long id;
     StringType type;
     void *string;
 };
 
 
-void pttp_get(std::vector<StringStorage> *storage, unsigned long id)
+void pttp_get(std::vector<Item> *storage, unsigned long id)
 {
     for (auto it = storage->begin(); it != storage->end(); it++) {
         if (it->id == id) {
@@ -94,9 +94,9 @@ void pttp_get(std::vector<StringStorage> *storage, unsigned long id)
     return;
 }
 
-void pttp_post(std::vector<StringStorage> *storage, unsigned long type, char *string)
+void pttp_post(std::vector<Item> *storage, unsigned long type, char *string)
 {
-    StringStorage item;
+    Item item;
 
     // create new string storage item
     if (type == PSTRING) {
@@ -123,7 +123,7 @@ void pttp_post(std::vector<StringStorage> *storage, unsigned long type, char *st
     return;
 }
 
-void pttp_put(std::vector<StringStorage> *storage, unsigned long id, char *string)
+void pttp_put(std::vector<Item> *storage, unsigned long id, char *string)
 {
     for (auto it = storage->begin(); it != storage->end(); it++) {
         if (it->id == id) {
@@ -141,7 +141,7 @@ void pttp_put(std::vector<StringStorage> *storage, unsigned long id, char *strin
     return;
 }
 
-void pttp_delete(std::vector<StringStorage> *storage, unsigned long id)
+void pttp_delete(std::vector<Item> *storage, unsigned long id)
 {
     for (auto it = storage->begin(); it != storage->end(); it++) {
         if (it->id == id) {
@@ -159,9 +159,12 @@ int main(int argc, char **argv)
     (void)argc;
     (void)argv;
 
-    std::vector<StringStorage> *storage = new std::vector<StringStorage>();
+    std::vector<Item> *storage = new std::vector<Item>();
     char input[BUFSIZE] = { 0 };
     unsigned long id;
+
+    // place stdout into non-buffered mode
+    setvbuf(stdout, NULL, _IONBF, 0);
 
     while (true) {
         // get command
@@ -219,6 +222,7 @@ int main(int argc, char **argv)
 
             pttp_delete(storage, id);
         } else if (!strncmp(input, "END", 3)) {
+            puts("OK");
             break;
         } else {
             puts("ERROR");
